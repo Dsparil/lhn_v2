@@ -1,0 +1,6 @@
+{
+    "php.validate.enable": false,
+    "docker-linter.php.container": "LHN_v2",
+    "docker-linter.php.enable": true,
+    "docker-linter.php.machine": ""
+}
