@@ -5,27 +5,22 @@ services:
     image: mariadb:latest
     container_name: LHN_v2_DB
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: Cocacola*666
-      MYSQL_DATABASE: lhn_v2
-      MYSQL_USER: lahorde
-      MYSQL_PASSWORD: Cocacola*666
+    env_file: mariadb.env
     ports:
       - "3306:3306"
     networks:
       - my-network
     volumes:
-      - C:\Code\LHN_v2\database:/var/lib/mysql:rw
+      - ./database:/var/lib/mysql:rw
   node-vite:
     image: node:18
     container_name: LHN_v2_Vite
     working_dir: /app
     volumes:
-      - C:\Code\LHN_v2\src:/app
-      - /app/node_modules
+      - ./src:/app
     ports:
       - "5173:5173" # Port de Vite
-    command: sh -c "npm install && npm run build"
+    command: sh -c "npm install && npm run watch"
     networks:
       - my-network
   php-apache:
@@ -41,7 +36,7 @@ services:
     networks:
       - my-network
     volumes:
-      - C:\Code\LHN_v2\src:/app:rw
+      - ./src:/app:rw
 
 networks:
   my-network:

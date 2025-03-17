@@ -13,7 +13,7 @@
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="bg-black text-white">
     <header>
         <div class="container">
             <h1>{{ env('APP_NAME') }}</h1>

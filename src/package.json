@@ -2,6 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "watch": "vite build --watch",
         "build": "vite build",
         "dev": "vite"
     },
