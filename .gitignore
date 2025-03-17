@@ -1,2 +1,5 @@
 database/
+database_old/
+docs/
 mariadb.env
+mysql_old.env

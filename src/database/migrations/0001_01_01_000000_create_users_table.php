@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedForeignId('profile_id')->constrained('profiles');
             $table->string('name');
             $table->string('login')->unique();
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->string('password');
             $table->boolean('active')->default(true);
             $table->rememberToken();

@@ -12,6 +12,17 @@ services:
       - my-network
     volumes:
       - ./database:/var/lib/mysql:rw
+  mysql:
+    image: mysql:latest
+    container_name: LHN_old_DB
+    restart: always
+    env_file: mysql_old.env
+    ports:
+      - "3307:3307"
+    networks:
+      - my-network
+    volumes:
+      - ./database_old:/var/lib/mysql:rw
   node-vite:
     image: node:18
     container_name: LHN_v2_Vite
@@ -33,6 +44,7 @@ services:
       - "666:80"
     depends_on:
       - mariadb
+      - mysql
     networks:
       - my-network
     volumes:
