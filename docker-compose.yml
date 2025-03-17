@@ -14,21 +14,34 @@ services:
       - "3306:3306"
     networks:
       - my-network
-
+    volumes:
+      - C:\Code\LHN_v2\database:/var/lib/mysql:rw
+  node-vite:
+    image: node:18
+    container_name: LHN_v2_Vite
+    working_dir: /app
+    volumes:
+      - C:\Code\LHN_v2\src:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173" # Port de Vite
+    command: sh -c "npm install && npm run build"
+    networks:
+      - my-network
   php-apache:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: LHN_v2
     restart: always
-    volumes:
-      - C:\Code\LHN_v2\src:/app:rw
     ports:
       - "666:80"
     depends_on:
       - mariadb
     networks:
       - my-network
+    volumes:
+      - C:\Code\LHN_v2\src:/app:rw
 
 networks:
   my-network:
